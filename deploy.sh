@@ -152,7 +152,7 @@ commit+push() {
 
   disable_expanded_output
   #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-  git push --force --quiet -u "https://${GH_TOKEN}@${GH_REF}" $repo $deploy_branch
+  git push --force --quiet -u "https://${GH_TOKEN}@${GH_REF}" $repo $deploy_branch  > /dev/null 2>&1
   enable_expanded_output
 }
 
