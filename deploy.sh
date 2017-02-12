@@ -152,8 +152,6 @@ commit+push() {
 
   disable_expanded_output
   #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-  git config user.name $default_username
-  git config user.email $default_email
 
   git push --force --quiet -u "https://${GH_TOKEN}@${GH_REF}" $repo $deploy_branch  > /dev/null 2>&1
   enable_expanded_output
@@ -176,12 +174,9 @@ disable_expanded_output() {
 }
 
 set_user_id() {
-  if [[ -z `git config user.name` ]]; then
-    git config user.name "$default_username"
-  fi
-  if [[ -z `git config user.email` ]]; then
-    git config user.email "$default_email"
-  fi
+  git config user.name "Travis CI"
+  git config user.email "admin@centermatrestling.com"
+  cat .git/config 
 }
 
 restore_head() {
